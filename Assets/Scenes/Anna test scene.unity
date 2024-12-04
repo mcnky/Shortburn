@@ -132,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 191325967}
   - component: {fileID: 191325966}
+  - component: {fileID: 191325968}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -216,6 +217,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &191325968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191325965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &1059950949
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +332,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2008714838
+--- !u!1001 &2100348011
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -316,49 +340,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 397153551285702222, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
-      propertyPath: m_Name
-      value: ConcreteFloor
-      objectReference: {fileID: 0}
-    - target: {fileID: 3723185002878991488, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
+    - target: {fileID: 751210946661409738, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3723185002878991488, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
+    - target: {fileID: 751210946661409738, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.33
       objectReference: {fileID: 0}
-    - target: {fileID: 3723185002878991488, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
+    - target: {fileID: 751210946661409738, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3723185002878991488, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
+    - target: {fileID: 751210946661409738, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3723185002878991488, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
+    - target: {fileID: 751210946661409738, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3723185002878991488, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
+    - target: {fileID: 751210946661409738, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3723185002878991488, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
+    - target: {fileID: 751210946661409738, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3723185002878991488, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
+    - target: {fileID: 751210946661409738, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3723185002878991488, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
+    - target: {fileID: 751210946661409738, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3723185002878991488, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
+    - target: {fileID: 751210946661409738, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424686740832335307, guid: c2ece8a243b38ed46b64545c309dcba1, type: 3}
+      propertyPath: m_Name
+      value: ConcreteFloor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -371,4 +395,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 1059950952}
   - {fileID: 191325967}
-  - {fileID: 2008714838}
+  - {fileID: 2100348011}
