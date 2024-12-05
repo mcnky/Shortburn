@@ -14,6 +14,7 @@ public class Fan : MonoBehaviour
     {
         BlowPlayerAway();
     }
+   
     private void BlowPlayerAway()
     {
         Rigidbody playerRb = player.GetComponent<Rigidbody>();
