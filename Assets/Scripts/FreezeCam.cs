@@ -7,6 +7,7 @@ public class FreezeCam : MonoBehaviour
     [SerializeField] private LayerMask mask;
     [SerializeField] private float size = 5;
     [SerializeField] private float startDistance = 4;
+    [SerializeField] private Material flashMaterial;
     private Camera cam;
 
     private List<Vector3> corners = new List<Vector3>();
@@ -52,7 +53,9 @@ public class FreezeCam : MonoBehaviour
         mesh.uv = uv;
         mesh.triangles = triangles;
 
-        meshObject.AddComponent<MeshCollider>();
+        //meshObject.AddComponent<MeshCollider>();
+        meshObject.GetComponent<Renderer>().material = flashMaterial;
+        meshObject.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
         Destroy(meshObject, 2);
     }
