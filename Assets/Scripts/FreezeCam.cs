@@ -98,12 +98,6 @@ public class FreezeCam : MonoBehaviour
 
             CreateObject();
         }
-
-        
-
-
-
-
     }
 
 
