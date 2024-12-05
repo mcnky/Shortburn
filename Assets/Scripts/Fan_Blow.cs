@@ -14,8 +14,6 @@ public class Fan_Blow : MonoBehaviour
         {
             BlowPlayerAway();
         }
-
-      
         
     private void BlowPlayerAway()
     {
