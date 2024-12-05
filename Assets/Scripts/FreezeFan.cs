@@ -15,8 +15,8 @@ public class FreezeFan : MonoBehaviour, IFreezable
     [SerializeField] float freezeTime = 2;
     [SerializeField] private float speed = 2;
     [SerializeField] private AnimationCurve curve;
-    private float mult = 1f;
-
+    public static float mult = 1f;
+    
     void Update()
     {
         Vector3 rotation = transform.rotation.eulerAngles;
