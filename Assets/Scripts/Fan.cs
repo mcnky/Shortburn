@@ -14,6 +14,7 @@ public class Fan : MonoBehaviour
     {
         BlowPlayerAway();
     }
+   
     private void BlowPlayerAway()
     {
         Rigidbody playerRb = player.GetComponent<Rigidbody>();
@@ -21,7 +22,7 @@ public class Fan : MonoBehaviour
         if (playerRb != null)
         {
             Vector3 direction = (player.position - transform.position).normalized;
-            playerRb.AddForce(direction * -blowForce, ForceMode.Impulse);
+            playerRb.AddForce(direction *FreezeFan.mult * -blowForce, ForceMode.Impulse);
         }
         else
         {
