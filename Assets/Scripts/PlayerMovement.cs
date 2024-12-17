@@ -50,14 +50,23 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
-    }
 
-    void OnDrawGizmos()
-    {
-        if (groundCheck != null)
+        if (Input.GetKey(KeyCode.LeftControl))
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(groundCheck.position, groundDistance);
+            gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        }
+        else
+        {
+            gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        }
+
+        void OnDrawGizmos()
+        {
+            if (groundCheck != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireSphere(groundCheck.position, groundDistance);
+            }
         }
     }
 }
