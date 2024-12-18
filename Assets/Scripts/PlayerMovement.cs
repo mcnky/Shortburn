@@ -60,6 +60,8 @@ public class PlayerMovement : MonoBehaviour
             gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         }
 
+
+
         void OnDrawGizmos()
         {
             if (groundCheck != null)
