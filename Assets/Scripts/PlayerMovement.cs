@@ -53,11 +53,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            gameObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
         }
         else
         {
-            gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            gameObject.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
         }
 
 
