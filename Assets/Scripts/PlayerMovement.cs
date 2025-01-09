@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Movement Settings")]
     public float moveSpeed = 5f;
-    public float jumpForce = 5f;
+    public float jumpForce = 4f;
 
-    [Header("Mouse Look Settings")]
-    public float mouseSensitivity = 100f;
+    public float mouseSensitivity = 200f;
     public Transform playerCamera;
     private float xRotation = 0f;
 
-    [Header("Ground Check")]
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
@@ -21,10 +18,19 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private bool isGrounded;
 
+    public float crouchSpeed = 2f; 
+    private bool isCrouching = true;
+    private Vector3 originalScale;
+    private Vector3 crouchScale;
+
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         rb = GetComponent<Rigidbody>();
+        Cursor.lockState = CursorLockMode.Locked;
+
+        originalScale = transform.localScale;
+        crouchScale = new Vector3(originalScale.x, originalScale.y * 0.5f, originalScale.z);
+
     }
 
     void Update()
@@ -42,34 +48,41 @@ public class PlayerMovement : MonoBehaviour
         float moveZ = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * moveX + transform.forward * moveZ;
-        rb.MovePosition(rb.position + move * moveSpeed * Time.deltaTime);
+
+        float adjustedSpeed = isCrouching ? crouchSpeed : moveSpeed;
+        rb.MovePosition(rb.position + move * adjustedSpeed * Time.deltaTime);
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded && !isCrouching)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            gameObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
-        }
-        else
-        {
-            gameObject.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
-        }
-
-
-
-        void OnDrawGizmos()
-        {
-            if (groundCheck != null)
+            if (!isCrouching)
             {
-                Gizmos.color = Color.red;
-                Gizmos.DrawWireSphere(groundCheck.position, groundDistance);
+                isCrouching = true;
+                Crouch();
             }
         }
+        else if (isCrouching)
+        {
+            isCrouching = false;
+            StandUp();
+        }
+    }
+
+    void Crouch()
+    {
+        transform.localScale = crouchScale;
+        transform.position = new Vector3(transform.position.x, transform.position.y - (originalScale.y - crouchScale.y), transform.position.z);
+    }
+
+    void StandUp()
+    {
+        transform.localScale = originalScale;
+        transform.position = new Vector3(transform.position.x, transform.position.y + (originalScale.y - crouchScale.y) / 2, transform.position.z);
     }
 }
-
