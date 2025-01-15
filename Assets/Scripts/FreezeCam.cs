@@ -5,9 +5,15 @@ using UnityEngine;
 public class FreezeCam : MonoBehaviour
 {
     [SerializeField] private LayerMask mask;
+    [SerializeField] private float horizontalRays = 100;
+    [SerializeField] private float verticalRays = 70;
+    [SerializeField] private float rayDistance = 10;
     [SerializeField] private float size = 5;
     [SerializeField] private float startDistance = 4;
+    [SerializeField] private Transform player;
     [SerializeField] private Material flashMaterial;
+    [SerializeField] private GameObject flashLight;
+    private Vector3 flashOffset;
     private Camera cam;
 
     private List<Vector3> corners = new List<Vector3>();
@@ -21,15 +27,67 @@ public class FreezeCam : MonoBehaviour
 
     private int triangleIndex;
 
+    private List<Ray> gizmoRays = new List<Ray>();
+
     void Start()
     {
         cam = GetComponent<Camera>();
+        flashOffset = cam.transform.position - transform.position;
 
+    }
+
+    
+    void Update()
+    {
+        corners.Clear();
+
+        AddPositions(startDistance);
+        AddPositions(startDistance + size);
+
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            gizmoRays.Clear();
+            Vector3 pos = new(0, Screen.height);
+            for (int y = (int)verticalRays; y > 0; y--)
+            {
+                pos.y = (y / verticalRays) * Screen.height;
+                for (int x = 0; x < horizontalRays; x++)
+                {
+                    pos.x = (x / horizontalRays) * Screen.width;
+                    Ray point = cam.ScreenPointToRay(pos);
+                    gizmoRays.Add(point);
+                    if (Physics.Raycast(point, out RaycastHit hit, rayDistance, mask))
+                    {
+                        hit.collider.gameObject.GetComponent<IFreezable>().Freeze();
+                        Debug.Log(hit.point);
+                    }
+
+                    
+                }
+            }
+
+            Vector3 upperLeftScreen = new Vector3(0, Screen.height, rayDistance);
+            Vector3 upperRightScreen = new Vector3(Screen.width, Screen.height, rayDistance);
+            Vector3 lowerLeftScreen = new Vector3(0, 0, rayDistance);
+            Vector3 lowerRightScreen = new Vector3(Screen.width, 0, rayDistance);
+
+            //Corner locations in world coordinates
+            Vector3 upperLeft = cam.ScreenToWorldPoint(upperLeftScreen);
+            Vector3 upperRight = cam.ScreenToWorldPoint(upperRightScreen);
+            Vector3 lowerLeft = cam.ScreenToWorldPoint(lowerLeftScreen);
+            Vector3 lowerRight = cam.ScreenToWorldPoint(lowerRightScreen);
+            
+
+            CreateObject();
+            Destroy(Instantiate(flashLight, transform.position, player.rotation), 5);
+            
+        }
     }
 
     private void CreateObject()
     {
-        for (int i = 0; i < 8; i++) 
+        for (int i = 0; i < 8; i++)
         {
             vertices[i] = corners[i];
         }
@@ -78,28 +136,6 @@ public class FreezeCam : MonoBehaviour
     }
 
 
-    void Update()
-    {
-        corners.Clear();
-
-        AddPositions(startDistance);
-        AddPositions(startDistance + size);
-
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            RaycastHit[] hits = Physics.SphereCastAll(transform.position, 3, transform.forward, 3, mask);
-            foreach (RaycastHit hit in hits)
-            {
-                hit.collider.gameObject.GetComponent<IFreezable>().Freeze();
-
-                
-            }
-
-            CreateObject();
-        }
-    }
-
 
     private void AddPositions(float depth)
     {
@@ -126,9 +162,15 @@ public class FreezeCam : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.yellow;
         foreach (Vector3 position in corners)
         {
             Gizmos.DrawSphere(position, 0.2f);
         }
+        foreach(Ray ray in gizmoRays) 
+        {
+            Gizmos.DrawRay(ray);
+        }
+        
     }
 }
