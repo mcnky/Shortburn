@@ -3,12 +3,7 @@ guid: 48f70fc30c2626e49817fc44700294de
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: aiAmbientOcclusion1
-    second: {fileID: 2100000, guid: 165f33b11d2c9244a983537d437c6059, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
