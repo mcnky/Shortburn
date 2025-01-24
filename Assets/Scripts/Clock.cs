@@ -55,7 +55,6 @@ public class Clock : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.z) * Mathf.Rad2Deg; 
             minuteHand.rotation = Quaternion.Euler(-angle, 0, 0); 
         }
-
         if (hourHand)
         {
             Transform targetHourPoint = clockPoints[hourIndex];
